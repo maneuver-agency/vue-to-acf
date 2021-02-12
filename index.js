@@ -74,8 +74,7 @@ function parseComponent(vueFile, destFolder) {
           const filename = `${destFolder}${groupKey}.json`
           jsonfile.writeFile(filename, config, { spaces: 2 }, function (err) {
             if (err) console.error(err)
-            console.log(colors.green(`${filename} created`))
-            cb()
+            else console.log(colors.green(`${filename} created`))
           })
         })
         .catch((err) => showError(err))
