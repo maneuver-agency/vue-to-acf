@@ -150,6 +150,12 @@ function getAcfFieldConfig(prop) {
     }
   }
 
+  if (type === 'repeater') {
+    extra = {
+      layout: 'row',
+    }
+  }
+
   if (name === 'valign' || name === 'align') {
     extra = {
       choices: {
