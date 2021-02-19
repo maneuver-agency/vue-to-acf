@@ -113,6 +113,7 @@ function getAcfFieldType(prop) {
     string: 'text',
     boolean: 'true_false',
     number: 'number',
+    array: 'repeater',
   }[prop.type.toLowerCase()]
 }
 
@@ -144,7 +145,7 @@ function getAcfFieldConfig(prop) {
 
   if (type === 'image') {
     extra = {
-      return_format: 'url',
+      return_format: 'array',
       preview_size: 'thumbnail',
     }
   }
