@@ -7,6 +7,7 @@ const yargs = require('yargs')
 const jsonfile = require('jsonfile')
 const Vuedoc = require('@vuedoc/parser')
 const colors = require('colors/safe')
+const { startsWith } = require('lodash')
 
 const argv = yargs
   .command('parse', 'Parse a component', {
@@ -92,7 +93,7 @@ function snakeCaseToWords(string) {
 }
 
 function getAcfFieldType(prop) {
-  if (prop.name === 'image') {
+  if (startsWith(prop.name, 'image')) {
     return 'image'
   }
   if (prop.name === 'button') {
@@ -103,10 +104,17 @@ function getAcfFieldType(prop) {
   }
   if (
     prop.name === 'align' ||
+    prop.name === 'halign' ||
     prop.name === 'valign' ||
     prop.name === 'text-align'
   ) {
     return 'button_group'
+  }
+  if (prop.name === 'buttons') {
+    return 'repeater'
+  }
+  if (prop.name === 'images') {
+    return 'gallery'
   }
 
   return {
@@ -143,7 +151,7 @@ function getAcfFieldConfig(prop) {
     }
   }
 
-  if (type === 'image') {
+  if (type === 'image' || type === 'images') {
     extra = {
       return_format: 'array',
       preview_size: 'thumbnail',
@@ -156,7 +164,7 @@ function getAcfFieldConfig(prop) {
     }
   }
 
-  if (name === 'valign' || name === 'align') {
+  if (name === 'valign') {
     extra = {
       choices: {
         start: 'Top',
@@ -166,7 +174,7 @@ function getAcfFieldConfig(prop) {
     }
   }
 
-  if (name === 'text-align') {
+  if (name === 'text-align' || name === 'halign' || name === 'align') {
     extra = {
       choices: {
         left: 'Left',

@@ -1,6 +1,6 @@
 {
   "name": "vue-to-acf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "@vuedoc/parser": "^3.3.0",
     "colors": "^1.4.0",
     "jsonfile": "^6.1.0",
+    "lodash": "^4.17.21",
     "yargs": "^16.2.0"
   }
 }
