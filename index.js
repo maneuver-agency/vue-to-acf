@@ -51,6 +51,7 @@ function parseComponent(vueFile, destFolder) {
           const groupKey = `group_${componentName.toLowerCase()}_component`
 
           const fields = []
+          console.log(component)
 
           for (const prop of component.props) {
             fields.push({
@@ -133,6 +134,7 @@ function getAcfFieldConfig(prop) {
     label: snakeCaseToWords(name),
     name,
     type,
+    required: prop.required ? '1' : '0',
   }
   let extra = {}
 
