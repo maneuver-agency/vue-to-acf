@@ -45,13 +45,13 @@ function parseComponent(vueFile, destFolder) {
     if (err) {
       showError(`Error reading ${vueFile}. Does it exist?`)
     } else {
-      Vuedoc.parse({ filename: vueFile })
+      Vuedoc.parse({ filename: vueFile, features: ['name', 'props'] })
         .then((component) => {
           const componentName = component.name
           const groupKey = `group_${componentName.toLowerCase()}_component`
 
           const fields = []
-          console.log(component)
+          // console.log(component)
 
           for (const prop of component.props) {
             fields.push({
